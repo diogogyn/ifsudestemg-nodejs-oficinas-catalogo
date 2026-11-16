@@ -1,0 +1,25 @@
+<h1 class="mb-3">Pesquisa de oficinas</h1>
+
+<form action="/pesquisa" method="post" class="mb-3">
+  <div class="mb-3">
+    <label for="termo" class="form-label">Título da oficina</label>
+    <input class="form-control" type="text" id="termo" name="termo" value="{{termo}}" />
+  </div>
+  <button class="btn btn-primary" type="submit">Pesquisar</button>
+</form>
+
+{{#if beforeSearch}}
+  <div class="alert alert-info" role="alert">Digite um termo para pesquisar oficinas pelo título.</div>
+{{else}}
+  {{#if resultados.length}}
+    <ul class="list-group">
+      {{#each resultados}}
+        <li class="list-group-item">
+          <a href="/oficinas/{{this.id}}">{{this.titulo}}</a>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <div class="alert alert-warning" role="alert">Nenhuma oficina encontrada para o termo pesquisado.</div>
+  {{/if}}
+{{/if}}

@@ -1,0 +1,75 @@
+<h1 class="mb-3">{{title}}</h1>
+
+<div class="mb-3 d-flex gap-2">
+  <a href="/" class="btn {{#if (eq viewMode 'all')}}btn-primary{{else}}btn-outline-primary{{/if}}">Todas as Oficinas</a>
+  <a href="/oficinas/abertas" class="btn {{#if (eq viewMode 'open')}}btn-primary{{else}}btn-outline-primary{{/if}}">Inscrições Abertas</a>
+</div>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <h2 class="h5 mb-3">Resumo do catálogo</h2>
+    <ul class="mb-0">
+      <li>Total de oficinas: <strong>{{summary.total}}</strong></li>
+      <li>Com inscrições abertas: <strong>{{summary.abertas}}</strong></li>
+      <li>Com inscrições encerradas: <strong>{{summary.encerradas}}</strong></li>
+      <li>Soma de cargas horárias das oficinas abertas: <strong>{{summary.cargaHorariaAbertas}}</strong> h</li>
+    </ul>
+  </div>
+</div>
+
+{{#if oficinas.length}}
+  <table class="table table-hover">
+    <thead class="table-primary text-center">
+      <tr>
+        <th>Título</th>
+        <th>Carga horária</th>
+        <th>Inscrições</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each oficinas}}
+        <tr>
+          <td>{{this.titulo}}</td>
+          <td class="text-center">{{this.cargaHoraria}} h</td>
+          <td class="text-center">{{#if this.inscricoesAbertas}}Abertas{{else}}Encerradas{{/if}}</td>
+          <td class="text-center">
+            <a class="btn btn-sm btn-outline-primary" href="/oficinas/{{this.id}}">Consultar</a>
+            <a class="btn btn-sm btn-outline-secondary" href="/oficinas/{{this.id}}/editar">Editar</a>
+            <button class="btn btn-sm btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal{{this.id}}">Excluir</button>
+            <form class="d-inline" action="/oficinas/{{this.id}}/toggle" method="post">
+              <button class="btn btn-sm btn-outline-warning" type="submit">{{#if this.inscricoesAbertas}}Encerrar{{else}}Reabrir{{/if}}</button>
+            </form>
+
+            <div class="modal fade" id="deleteModal{{this.id}}" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Confirmar exclusão</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                  </div>
+                  <div class="modal-body">
+                    Deseja realmente excluir a oficina "{{this.titulo}}"?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form action="/oficinas/{{this.id}}/delete" method="post">
+                      <button type="submit" class="btn btn-danger">Confirmar</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <div class="alert alert-info" role="alert">
+    {{emptyMessage}}
+    {{#unless hasAnyOficinas}}
+      <a href="/oficinas/nova" class="alert-link">Cadastre a primeira oficina.</a>
+    {{/unless}}
+  </div>
+{{/if}}

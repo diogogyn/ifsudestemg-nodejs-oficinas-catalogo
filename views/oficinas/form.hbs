@@ -1,0 +1,38 @@
+<h1 class="mb-3">{{title}}</h1>
+
+{{#if errors.length}}
+  <div class="alert alert-danger" role="alert">
+    <ul class="mb-0">
+      {{#each errors}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
+
+<form action="{{formAction}}" method="post">
+  <div class="mb-3">
+    <label for="titulo" class="form-label">Título</label>
+    <input class="form-control" type="text" id="titulo" name="titulo" value="{{oficina.titulo}}" required />
+  </div>
+
+  <div class="mb-3">
+    <label for="responsavel" class="form-label">Responsável</label>
+    <input class="form-control" type="text" id="responsavel" name="responsavel" value="{{oficina.responsavel}}" required />
+  </div>
+
+  <div class="mb-3">
+    <label for="descricao" class="form-label">Descrição</label>
+    <textarea class="form-control" id="descricao" name="descricao" rows="5" required>{{oficina.descricao}}</textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="cargaHoraria" class="form-label">Carga horária (1 a 40 horas)</label>
+    <input class="form-control" type="number" id="cargaHoraria" name="cargaHoraria" min="1" max="40" step="1" value="{{oficina.cargaHoraria}}" required />
+  </div>
+
+  <div class="d-flex gap-2">
+    <button class="btn btn-primary" type="submit">Salvar</button>
+    <a class="btn btn-secondary" href="{{cancelLink}}">Cancelar</a>
+  </div>
+</form>

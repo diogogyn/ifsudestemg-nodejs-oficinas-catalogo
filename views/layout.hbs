@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <main class="container py-4">
+      <ul class="nav nav-pills nav-fill nav-justified mb-4">
+        <li class="nav-item">
+          <a class="nav-link{{#if (eq activeNav 'inicio')}} active{{/if}}" href="/">Início</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{{#if (eq activeNav 'sobre')}} active{{/if}}" href="/sobre">Sobre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{{#if (eq activeNav 'nova')}} active{{/if}}" href="/oficinas/nova">Nova oficina</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{{#if (eq activeNav 'pesquisa')}} active{{/if}}" href="/pesquisa">Pesquisa</a>
+        </li>
+      </ul>
+
+      {{{body}}}
+    </main>
+
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

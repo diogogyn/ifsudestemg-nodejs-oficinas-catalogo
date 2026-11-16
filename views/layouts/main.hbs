@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}} - Catálogo de Oficinas</title>
+  <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <div class="container mt-4 mb-5">
+
+    <h1 class="text-center mb-4">Catálogo de Oficinas</h1>
+
+    <ul class="nav nav-pills nav-fill mb-4">
+      <li class="nav-item">
+        <a class="nav-link {{#if (eq paginaAtiva 'inicio')}}active{{/if}}" href="/">Início</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{#if (eq paginaAtiva 'sobre')}}active{{/if}}" href="/sobre">Sobre</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{#if (eq paginaAtiva 'nova')}}active{{/if}}" href="/oficinas/nova">Nova oficina</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{#if (eq paginaAtiva 'pesquisa')}}active{{/if}}" href="/pesquisa">Pesquisa</a>
+      </li>
+    </ul>
+
+    {{{body}}}
+
+  </div>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

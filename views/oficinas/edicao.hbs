@@ -1,0 +1,30 @@
+<h2 class="mb-4">Editar Oficina</h2>
+
+<form action="/oficinas/{{oficina.id}}/editar" method="POST">
+  <div class="mb-3">
+    <label for="titulo" class="form-label">Título</label>
+    <input type="text" id="titulo" name="titulo" class="form-control"
+           value="{{oficina.titulo}}" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="responsavel" class="form-label">Responsável</label>
+    <input type="text" id="responsavel" name="responsavel" class="form-control"
+           value="{{oficina.responsavel}}" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="descricao" class="form-label">Descrição</label>
+    <textarea id="descricao" name="descricao" class="form-control" rows="4" required>{{oficina.descricao}}</textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="cargaHoraria" class="form-label">Carga horária (horas inteiras, de 1 a 40)</label>
+    <input type="number" id="cargaHoraria" name="cargaHoraria"
+           class="form-control" min="1" max="40" step="1"
+           value="{{oficina.cargaHoraria}}" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Salvar</button>
+  <a href="/oficinas/{{oficina.id}}" class="btn btn-secondary">Cancelar</a>
+</form>
